@@ -5,5 +5,6 @@ import (
 )
 
 func (s *server) routes() {
-	s.router.HandleFunc("/hello", s.handleHello()).Methods(http.MethodGet)
+	s.router.HandleFunc("/", s.withLogging(s.handleRoot()))
+	s.router.HandleFunc("/hello", s.withLogging(s.handleHello())).Methods(http.MethodGet)
 }

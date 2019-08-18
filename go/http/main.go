@@ -6,6 +6,9 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+
+	"github.com/gorilla/mux"
+	"github.com/kshitij10496/hitchhikers-guide/go/http/hello-server"
 )
 
 func main() {
@@ -24,7 +27,7 @@ func main() {
 	}
 
 	addr := fmt.Sprintf(":%d", port)
-	srv := newServer()
+	srv := hello.NewServer(mux.NewRouter())
 	fmt.Printf("starting server on %s\n", addr)
 	if err := http.ListenAndServe(addr, srv); err != nil {
 		os.Exit(1)
